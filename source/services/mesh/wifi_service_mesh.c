@@ -787,6 +787,7 @@ int process_scan_result_timeout(wifi_service_node_t *node)
 
 void ext_try_connecting(wifi_service_node_t *node)
 {
+    wifi_util_info_print(WIFI_CTRL,"%s:%d: !!!!!! 0<-\n", __func__, __LINE__);
     mesh_sta_node_data_t *ext;
     wifi_ctrl_t *ctrl;
     wifi_vap_info_t *vap_info;
@@ -843,6 +844,7 @@ void ext_try_connecting(wifi_service_node_t *node)
         // Set to disabled in order to detect state change on connection retry
         vap_info->u.sta_info.conn_status = wifi_connection_status_disabled;
         ext->conn_retry++;
+        wifi_util_info_print(WIFI_CTRL,"%s:%d: !!!!!! wifi_hal_connect\n", __func__, __LINE__);
         if (wifi_hal_connect(vap_index, &candidate->external_ap) == RETURN_ERR) {
             wifi_util_error_print(WIFI_SERVICES, "%s:%d sta connect failed for vap index: %d, "
                 "retry after timeout\n", __func__, __LINE__, vap_index);
@@ -863,6 +865,7 @@ void ext_try_connecting(wifi_service_node_t *node)
                 process_ext_connect_algorithm, node,
                 EXT_CONNECT_ALGO_PROCESSOR_INTERVAL, 1, FALSE);
     }
+    wifi_util_info_print(WIFI_CTRL,"%s:%d: !!!!!! 0->\n", __func__, __LINE__);
 }
 
 int process_ext_connect_algorithm(wifi_service_node_t *node)

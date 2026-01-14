@@ -829,6 +829,7 @@ static void reset_sta_state(vap_svc_t *svc, unsigned int vap_index)
 
 void ext_try_connecting(vap_svc_t *svc)
 {
+    wifi_util_info_print(WIFI_CTRL,"%s:%d: !!!!!! 0<-\n", __func__, __LINE__);
     vap_svc_ext_t   *ext;
     unsigned int i, vap_index, radio_index;
     bss_candidate_t         *candidate;
@@ -914,6 +915,7 @@ void ext_try_connecting(vap_svc_t *svc)
         // Set to disabled in order to detect state change on connection retry
         reset_sta_state(svc, vap_index);
         ext->conn_retry++;
+        wifi_util_info_print(WIFI_CTRL,"%s:%d: !!!!!! wifi_hal_connect\n", __func__, __LINE__);
         if (wifi_hal_connect(vap_index, &candidate->external_ap) == RETURN_ERR) {
             wifi_util_error_print(WIFI_CTRL, "%s:%d sta connect failed for vap index: %d, "
                 "retry after timeout\n", __func__, __LINE__, vap_index);
@@ -935,6 +937,7 @@ void ext_try_connecting(vap_svc_t *svc)
         ext_set_conn_state(ext, connection_state_disconnected_scan_list_none, __func__, __LINE__);
         schedule_connect_sm(svc);
     }
+    wifi_util_info_print(WIFI_CTRL,"%s:%d: !!!!!! 0->\n", __func__, __LINE__);
 }
 
 int process_ext_connect_algorithm(vap_svc_t *svc)

@@ -655,7 +655,8 @@ void bus_get_vap_init_parameter(const char *name, unsigned int *ret_val)
 #ifdef ONEWIFI_DEFAULT_NETWORKING_MODE
         *ret_val = ONEWIFI_DEFAULT_NETWORKING_MODE;
 #else
-        *ret_val = (unsigned int)global_param.device_network_mode;
+        // *ret_val = (unsigned int)global_param.device_network_mode;
+        *ret_val = rdk_dev_mode_type_ext;
 #endif
 #endif
         ctrl->network_mode = (unsigned int)*ret_val;
@@ -700,7 +701,8 @@ void bus_get_vap_init_parameter(const char *name, unsigned int *ret_val)
             return;
         }
 
-        *ret_val = data.raw_data.u32;
+        // *ret_val = data.raw_data.u32;
+        *ret_val = rdk_dev_mode_type_ext;
         ctrl->network_mode = (unsigned int)*ret_val;
         if (global_param.device_network_mode != (int)*ret_val) {
             global_param.device_network_mode = (int)*ret_val;
