@@ -17,9 +17,9 @@
 # limitations under the License.
 ##########################################################################
 
-# Enable if PLATFORM_BANANAPI or LIBWEBCONFIG is set
+# Enable if WIFI_MATH_UTILS_LIB is set
 
-if LIBWEBCONFIG
+if WIFI_MATH_UTILS_LIB
 AM_CFLAGS = -D_ANSC_LINUX
 AM_CFLAGS += -D_ANSC_USER
 if CCSP_ARCH_ARM
